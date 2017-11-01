@@ -23,9 +23,6 @@ Python 2.7 with the following packages:<br />
 - tensorflow (GPU enabled version is highly recommended. <br />
 - numpy<br />
 - scipy<br />
-    
-# Other
-A similar code example can be found at https://github.com/bolgebrygg/MalenoV.
 
 # Contact
 Email: anders.u.waldeland@gmail.com
