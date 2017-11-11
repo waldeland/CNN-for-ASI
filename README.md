@@ -1,7 +1,8 @@
 # CNN for ASI
-Tutorial: Convolutional Neural Networks for Automated Seismic Interpretation,<br />
+Code for the paper:
+**Tutorial: Convolutional Neural Networks for Automated Seismic Interpretation**,<br />
 A. U. Waldeland, A. C. Jensen, L. Gelius and A. H. S. Solberg <br />
-The Leading Edge, In Press
+*The Leading Edge, In Press*
 
 This repository contains python/pytorch code for applying Convolutional Neural Networks (CNN) on seismic data. The input is a segy-file containing post-stack seismic amplitude data. The training labels are given as images of the training slices, colored to indicate the classes. 
 
