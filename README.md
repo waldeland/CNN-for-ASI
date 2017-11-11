@@ -1,5 +1,5 @@
 # CNN for ASI
-Code for the paper:
+Code for the paper:<br />
 **Tutorial: Convolutional Neural Networks for Automated Seismic Interpretation**,<br />
 A. U. Waldeland, A. C. Jensen, L. Gelius and A. H. S. Solberg <br />
 *The Leading Edge, In Press*
