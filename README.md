@@ -15,15 +15,15 @@ CNNs requires time-demanding computations, consider using a computer with a fast
 -- segyio<br />
 -- matplotlib<br />
 - Clone this repository<br />
-- Download the demo dataset <a src=https://www.opendtect.org/osr/pmwiki.php/Main/NetherlandsOffshoreF3BlockComplete4GB>here<a/>.
+- Download the demo dataset [here](https://www.opendtect.org/osr/pmwiki.php/Main/NetherlandsOffshoreF3BlockComplete4GB.
 - Locate the '.segy'-file, rename it to 'data.segy' and put it in the 'F3'-folder.
  
 ### How to use tensorboard
 - Open a terminal<br />
 - cd to the code-folder<br />
-- run: tensorboard --out_dir='log'<br />
-- Open a web-browser and go to 127.0.0.1<br />
-More information canbe found here <a src=https://www.tensorflow.org/get_started/summaries_and_tensorboard#launching_tensorboard>here<a/>.
+- run: tensorboard --outdir='log'<br />
+- Open a web-browser and go to localhost:6006<br />
+More information can be found [here]https://www.tensorflow.org/get_started/summaries_and_tensorboard#launching_tensorboard).
   
 ### Usage
 - train.py - Example of how the CNN is trained<br />
