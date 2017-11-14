@@ -30,7 +30,6 @@ class TextureNet(nn.Module):
             nn.ReLU(),
 
             nn.Conv3d(50,2,1,1), #This is the equivalent of a fully connected layer since input has width/height/depth = 1
-            nn.Sigmoid(),
         )
         #The filter weights are by default initialized by random
 
