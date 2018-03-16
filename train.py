@@ -1,3 +1,7 @@
+# Compatability Imports
+from __future__ import print_function
+from os.path import join
+
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -7,9 +11,8 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader, Dataset
 import tensorboard
 
-# Compatability Imports
-from os.path import join
-from __future__ import print_function
+
+
 
 import numpy as np
 from utils import *
@@ -91,7 +94,7 @@ for i in range(2000):
 
         #Log to training loss
         if log_tensorboard: logger.log_scalar('training_loss',  loss.cpu().data[0],i)
-        print 'Iteration:', i, 'Training loss:', loss.cpu().data[0]
+        print('Iteration:', i, 'Training loss:', loss.cpu().data[0])
 
     #every 100th iteration
     if i % 100 == 0 and log_tensorboard:

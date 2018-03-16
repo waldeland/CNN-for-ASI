@@ -1,10 +1,10 @@
+# Compatability Imports
+from __future__ import print_function
+
 import torch
 import numpy as np
 from torch.autograd import Variable
 from scipy.interpolate import interpn
-
-#Compatibility
-from __future__ import print_function
 
 def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, return_full_size=True, use_gpu=True):
     # Wrap np.linspace in compact function call

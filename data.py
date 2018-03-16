@@ -1,11 +1,12 @@
+# Compatability Imports
+from __future__ import print_function
+from os.path import isfile, join
+
 import segyio
 from os import listdir
-from os.path import isfile, join
 import numpy as np
 import scipy.misc
 
-# Compatibiliry
-from __future__ import print_function
 
 def readSEGY(filename):
     print('Loading data cube from',filename,'with:')
