@@ -3,7 +3,7 @@ try:
 except:
     print('Tensorflow could not be imported, therefore tensorboard cannot be used.')
 
-from StringIO import StringIO
+from io import BytesIO
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -80,7 +80,7 @@ class TBLogger(object):
                 img = img.astype('int8')
 
             # Write the image to a string
-            s = StringIO()
+            s = BytesIO()
             plt.imsave(s, img, format='png')
 
             # Create an Image object
