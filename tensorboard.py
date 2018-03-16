@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import datetime
+from os.path import join
 
 class TBLogger(object):
 
     def __init__(self, log_dir, folder_name = '' ):
 
-        self.log_dir = log_dir+ '/' + folder_name + ' ' + datetime.datetime.now().strftime("%I:%M%p, %B %d, %Y") + '/'
+        self.log_dir = join(log_dir, folder_name + ' ' + datetime.datetime.now().strftime("%I%M%p, %B %d, %Y"))
         self.log_dir  = self.log_dir.replace('//','/')
         self.writer = tf.summary.FileWriter(self.log_dir)
 

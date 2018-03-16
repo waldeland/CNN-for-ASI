@@ -6,6 +6,9 @@ from batch import get_random_batch
 from torch.autograd import Variable
 from torch.utils.data import DataLoader, Dataset
 import tensorboard
+from os.path import join
+
+
 
 import numpy as np
 from utils import *
@@ -34,9 +37,9 @@ if use_gpu:
     network = network.cuda()
 
 #Load the data cube and labels
-data, data_info = readSEGY(dataset_name+'/data.segy')
-train_class_imgs, train_coordinates = readLabels(dataset_name+'/train/', data_info)
-val_class_imgs, _ = readLabels(dataset_name+'/val/', data_info)
+data, data_info = readSEGY(join(dataset_name,'data.segy'))
+train_class_imgs, train_coordinates = readLabels(join(dataset_name,'train'), data_info)
+val_class_imgs, _ = readLabels(join(dataset_name,'val'), data_info)
 
 #Plot training/validation data with labels
 if log_tensorboard:
@@ -106,4 +109,4 @@ for i in range(2000):
             logger.log_images( slice + '_' + str(slice_no) + '_pred_prob', class_img, i)
 
         #Store trained network
-        torch.save(network.state_dict(), dataset_name + '/saved_model.pt')
+        torch.save(network.state_dict(), join(dataset_name, 'saved_model.pt'))

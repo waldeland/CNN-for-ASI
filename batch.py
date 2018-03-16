@@ -181,7 +181,7 @@ if __name__ == '__main__':
     import tensorboard
     import numpy as np
 
-    data, data_info = readSEGY('F3/data.segy')
+    data, data_info = readSEGY(join('F3','data.segy'))
 
     train_coordinates = {'1':np.expand_dims( np.array([50,50,50]), 1)}
 
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32, random_rot_z=15)
     logger.log_images('dip', batch)
 
-    train_cls_imgs, train_coordinates = readLabels('F3/train/', data_info)
+    train_cls_imgs, train_coordinates = readLabels(join('F3','train'), data_info)
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32)
     logger.log_images('salt', batch[:16,:,:,:,:])
     logger.log_images('not salt', batch[16:, :, :, :, :])
