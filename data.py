@@ -94,7 +94,7 @@ def readLabels(foldername, data_info):
 
                 #Read file
                 print('Loading labels for', slice_type, slice_no, 'with')
-                img =  scipy.misc.imread(foldername + file)
+                img =  scipy.misc.imread(join(foldername, file))
                 img = interpolate_to_fit_data(img, slice_type, slice_no, data_info)
                 label_img = parseLabelsInImage(img)
 

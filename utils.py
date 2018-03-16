@@ -84,7 +84,7 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
             out = network(mini_cube)
             out = out.data.cpu().numpy()
 
-            out = out[:,:, out.shape[2]/2, out.shape[3]/2, out.shape[4]/2]
+            out = out[:,:, out.shape[2]//2, out.shape[3]//2, out.shape[4]//2]
             out = np.squeeze(out)
 
             # Make one output pr output channel
