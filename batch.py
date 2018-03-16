@@ -72,9 +72,9 @@ def getGrid(im_size):
     :param im_size: size of window
     :return: numpy int array with size: 3 x im_size**3
     """
-    win0 = np.linspace(-im_size[0] / 2, im_size[0] / 2, im_size[0])
-    win1 = np.linspace(-im_size[1] / 2, im_size[1] / 2, im_size[1])
-    win2 = np.linspace(-im_size[2] / 2, im_size[2] / 2, im_size[2])
+    win0 = np.linspace(-im_size[0] // 2, im_size[0] // 2, im_size[0])
+    win1 = np.linspace(-im_size[1] // 2, im_size[1] // 2, im_size[1])
+    win2 = np.linspace(-im_size[2] // 2, im_size[2] // 2, im_size[2])
 
     x0,x1,x2 = np.meshgrid(win0, win1, win2, indexing='ij')
     x0 = np.expand_dims(x0.ravel(), 0)

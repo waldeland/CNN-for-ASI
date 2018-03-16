@@ -8,7 +8,10 @@ from scipy.interpolate import interpn
 import tensorboard
 from utils import interpret
 from data import writeSEGY
+
+# Compatibility
 from os.path import join
+from __future__ import print_function
 
 #Parameters
 dataset_name = 'F3'

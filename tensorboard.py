@@ -1,13 +1,16 @@
 try:
     import tensorflow as tf
 except:
-    print 'Tensorflow could not be imported, therefore tensorboard cannot be used.'
+    print('Tensorflow could not be imported, therefore tensorboard cannot be used.')
 
 from StringIO import StringIO
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import datetime
+
+# Compatibility
+from __future__ import print_function
 from os.path import join
 
 class TBLogger(object):

@@ -4,8 +4,11 @@ from os.path import isfile, join
 import numpy as np
 import scipy.misc
 
+# Compatibiliry
+from __future__ import print_function
+
 def readSEGY(filename):
-    print 'Loading data cube from',filename,'with:'
+    print('Loading data cube from',filename,'with:')
 
     # Read full data cube
     data = segyio.tools.cube(filename)
@@ -18,9 +21,9 @@ def readSEGY(filename):
 
     #Read meta data
     segyfile = segyio.open(filename, "r")
-    print '  Crosslines: ', segyfile.xlines[0], ':', segyfile.xlines[-1]
-    print '  Inlines:    ', segyfile.ilines[0], ':', segyfile.ilines[-1]
-    print '  Timeslices: ', '1', ':', data.shape[0]
+    print('  Crosslines: ', segyfile.xlines[0], ':', segyfile.xlines[-1])
+    print('  Inlines:    ', segyfile.ilines[0], ':', segyfile.ilines[-1])
+    print('  Timeslices: ', '1', ':', data.shape[0])
 
     #Make dict with cube-info
     data_info = {}
@@ -39,7 +42,7 @@ def writeSEGY(out_filename, in_filename, out_cube):
     if type(out_cube) is list:
         out_cube = out_cube[0]
 
-    print 'Writing interpretation to ' + out_filename
+    print('Writing interpretation to ' + out_filename)
     #Copy segy file
     from shutil import copyfile
     copyfile(in_filename, out_filename)
@@ -78,7 +81,7 @@ def readLabels(foldername, data_info):
                 slice_no = int(tmp[0])
 
                 if slice_type not in inline_alias + crossline_alias + timeslice_alias:
-                    print 'File:', file, 'could not be loaded.', 'Unknown slice type'
+                    print('File:', file, 'could not be loaded.', 'Unknown slice type')
                     continue
 
                 if slice_type in inline_alias:
@@ -89,7 +92,7 @@ def readLabels(foldername, data_info):
                     slice_type = 'timeslice'
 
                 #Read file
-                print 'Loading labels for', slice_type, slice_no, 'with'
+                print('Loading labels for', slice_type, slice_no, 'with')
                 img =  scipy.misc.imread(foldername + file)
                 img = interpolate_to_fit_data(img, slice_type, slice_no, data_info)
                 label_img = parseLabelsInImage(img)
@@ -105,15 +108,15 @@ def readLabels(foldername, data_info):
                         inds_with_cls = label_img==cls
                         cords_with_cls = coords[:, inds_with_cls.ravel()]
                         label_coordinates[str(cls)]  = np.concatenate( (label_coordinates[str(cls)] , cords_with_cls), 1)
-                        print ' ', str(np.sum(inds_with_cls)), 'labels for class',str(cls)
+                        print(' ', str(np.sum(inds_with_cls)), 'labels for class',str(cls))
                 if len(np.unique(label_img)) == 1:
-                    print ' ', 0, 'labels', str(cls)
+                    print(' ', 0, 'labels', str(cls))
 
                 #Add label_img to output
                 label_imgs.append([label_img, slice_type, slice_no])
 
             #except:
-            #    print 'File:', file, 'could not be loaded.'
+            #    print('File:', file, 'could not be loaded.')
     return label_imgs, label_coordinates
 
 # Add colors to this table to make it possible to have more classes
@@ -137,7 +140,7 @@ def parseLabelsInImage(img):
 
     #Alpha channel
     if img.shape[2] == 4:
-        a = 1-img.shape[2]/255
+        a = 1-img.shape[2]//255
         r = r * a
         g = g * a
         b = b * a

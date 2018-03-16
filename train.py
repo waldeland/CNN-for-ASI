@@ -6,9 +6,10 @@ from batch import get_random_batch
 from torch.autograd import Variable
 from torch.utils.data import DataLoader, Dataset
 import tensorboard
+
+# Compatability Imports
 from os.path import join
-
-
+from __future__ import print_function
 
 import numpy as np
 from utils import *
