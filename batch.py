@@ -15,7 +15,7 @@ def get_random_batch(data_cube, label_coordinates, im_size, batch_size,
     batch = np.zeros([batch_size, 1, im_size[0], im_size[1], im_size[2]])
     labels = np.zeros([batch_size])
 
-    class_keys = list(label_coordinates.keys())
+    class_keys = list(label_coordinates)
     n_classes = len(class_keys)
 
     #Loop through batch
