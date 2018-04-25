@@ -73,7 +73,7 @@ class TBLogger(object):
                 img -= img.min()
                 img /= img.max()
                 img *= 255
-                img = img.astype('int8')
+                img = img.astype('uint8')
 
             # Write the image to a string
             s = StringIO()
