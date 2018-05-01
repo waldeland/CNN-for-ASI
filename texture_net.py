@@ -13,24 +13,24 @@ class TextureNet(nn.Module):
             #nn.Dropout3d() #Droput can be added like this ...
             nn.ReLU(),
 
-            nn.Conv3d(50,50,3,2,padding=1),
+            nn.Conv3d(50,50,3,2,padding=1, bias=False),
             nn.BatchNorm3d(50),
             nn.ReLU(),
 
-            nn.Conv3d(50,50,3,2,padding=1),
+            nn.Conv3d(50,50,3,2,padding=1, bias=False),
             nn.BatchNorm3d(50),
             nn.ReLU(),
 
-            nn.Conv3d(50,50,3,2,padding=1),
+            nn.Conv3d(50,50,3,2,padding=1, bias=False),
             nn.BatchNorm3d(50),
             nn.ReLU(),
 
-            nn.Conv3d(50,50,3,3,padding=1),
+            nn.Conv3d(50,50,3,3,padding=1, bias=False),
             nn.BatchNorm3d(50),
             nn.ReLU(),
 
             nn.Conv3d(50,2,1,1), #This is the equivalent of a fully connected layer since input has width/height/depth = 1
-            nn.Sigmoid(),
+            nn.ReLU(),
         )
         #The filter weights are by default initialized by random
 
@@ -38,8 +38,7 @@ class TextureNet(nn.Module):
     def forward(self,x):
         return self.net(x)
 
-    def softmax(self,x):
-        return self.net(x)
+
 
     def classify(self,x):
         x = self.net(x)
