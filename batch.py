@@ -15,7 +15,7 @@ def get_random_batch(data_cube, label_coordinates, im_size, batch_size,
     batch = np.zeros([batch_size, 1, im_size[0], im_size[1], im_size[2]])
     labels = np.zeros([batch_size])
 
-    class_keys = label_coordinates.keys()
+    class_keys = list(label_coordinates)
     n_classes = len(class_keys)
 
     #Loop through batch
@@ -72,9 +72,9 @@ def getGrid(im_size):
     :param im_size: size of window
     :return: numpy int array with size: 3 x im_size**3
     """
-    win0 = np.linspace(-im_size[0] / 2, im_size[0] / 2, im_size[0])
-    win1 = np.linspace(-im_size[1] / 2, im_size[1] / 2, im_size[1])
-    win2 = np.linspace(-im_size[2] / 2, im_size[2] / 2, im_size[2])
+    win0 = np.linspace(-im_size[0] // 2, im_size[0] // 2, im_size[0])
+    win1 = np.linspace(-im_size[1] // 2, im_size[1] // 2, im_size[1])
+    win2 = np.linspace(-im_size[2] // 2, im_size[2] // 2, im_size[2])
 
     x0,x1,x2 = np.meshgrid(win0, win1, win2, indexing='ij')
     x0 = np.expand_dims(x0.ravel(), 0)
@@ -181,7 +181,7 @@ if __name__ == '__main__':
     import tensorboard
     import numpy as np
 
-    data, data_info = readSEGY('F3/data.segy')
+    data, data_info = readSEGY(join('F3','data.segy'))
 
     train_coordinates = {'1':np.expand_dims( np.array([50,50,50]), 1)}
 
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32, random_rot_z=15)
     logger.log_images('dip', batch)
 
-    train_cls_imgs, train_coordinates = readLabels('F3/train/', data_info)
+    train_cls_imgs, train_coordinates = readLabels(join('F3','train'), data_info)
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32)
     logger.log_images('salt', batch[:16,:,:,:,:])
     logger.log_images('not salt', batch[16:, :, :, :, :])

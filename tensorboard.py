@@ -1,9 +1,13 @@
+# Compatability Imports
+from __future__ import print_function
+from os.path import join
+
 try:
     import tensorflow as tf
 except:
-    print 'Tensorflow could not be imported, therefore tensorboard cannot be used.'
+    print('Tensorflow could not be imported, therefore tensorboard cannot be used.')
 
-from StringIO import StringIO
+from io import BytesIO
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -13,7 +17,7 @@ class TBLogger(object):
 
     def __init__(self, log_dir, folder_name = '' ):
 
-        self.log_dir = log_dir+ '/' + folder_name + ' ' + datetime.datetime.now().strftime("%I:%M%p, %B %d, %Y") + '/'
+        self.log_dir = join(log_dir, folder_name + ' ' + datetime.datetime.now().strftime("%I%M%p, %B %d, %Y"))
         self.log_dir  = self.log_dir.replace('//','/')
         self.writer = tf.summary.FileWriter(self.log_dir)
 
@@ -76,7 +80,7 @@ class TBLogger(object):
                 img = img.astype('uint8')
 
             # Write the image to a string
-            s = StringIO()
+            s = BytesIO()
             plt.imsave(s, img, format='png')
 
             # Create an Image object

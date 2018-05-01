@@ -1,8 +1,10 @@
+# Compatability Imports
+from __future__ import print_function
+
 import torch
 import numpy as np
 from torch.autograd import Variable
 from scipy.interpolate import interpn
-
 
 def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, return_full_size=True, use_gpu=True):
     # Wrap np.linspace in compact function call
@@ -55,7 +57,7 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
     X2_grid_sub = X2_grid[::subsampl, ::subsampl, ::subsampl]
 
     #Get half window size
-    w = im_size/2
+    w = im_size//2
 
     #Loop through center pixels in output cube
     for i in range(X0_grid_sub.size):
@@ -82,7 +84,7 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
             out = network(mini_cube)
             out = out.data.cpu().numpy()
 
-            out = out[:,:, out.shape[2]/2, out.shape[3]/2, out.shape[4]/2]
+            out = out[:,:, out.shape[2]//2, out.shape[3]//2, out.shape[4]//2]
             out = np.squeeze(out)
 
             # Make one output pr output channel
@@ -172,9 +174,9 @@ def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, l
     filledLength = int(length * iteration // total)
     bar = fill * filledLength + '-' * (length - filledLength)
     if iteration != total:
-        print '\r%s |%s| %s%% %s - %sh %smin %ss left' % (prefix, bar, percent, suffix, exp_h, exp_m, exp_s),
+        print('\r%s |%s| %s%% %s - %sh %smin %ss left' % (prefix, bar, percent, suffix, exp_h, exp_m, exp_s),)
     else:
-        print '\r%s |%s| %s%% %s - %sh %smin %ss ' % (prefix, bar, percent, suffix, exp_h, exp_m, exp_s),
+        print('\r%s |%s| %s%% %s - %sh %smin %ss ' % (prefix, bar, percent, suffix, exp_h, exp_m, exp_s),)
     sys.stdout.write("\033[F")
     # Print New Line on Complete
     if iteration == total:
