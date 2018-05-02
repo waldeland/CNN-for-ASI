@@ -18,7 +18,7 @@ CNNs requires time-demanding computations, consider using a computer with a fast
 -- matplotlib<br />
 - Clone this repository<br />
 - Download the demo data set [here](https://www.opendtect.org/osr/pmwiki.php/Main/NetherlandsOffshoreF3BlockComplete4GB).
-- Locate the '.segy'-file, rename it to 'data.segy' and put it in the 'F3'-folder.
+- Locate the '.segy'-file (downloaded_folder\Rawdata\seismic_data.segy), rename it to 'data.segy' and put it in the 'F3'-folder.
  
 ### How to use tensorboard (for visualization)
 - Open a terminal<br />
