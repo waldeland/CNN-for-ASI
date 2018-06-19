@@ -15,7 +15,7 @@ def readSEGY(filename):
     data = segyio.tools.cube(filename)
 
     # Put temporal axis first
-    data = np.transpose(data, [2, 0, 1])
+    data = np.moveaxis(data, -1, 0)
 
     #Make data cube fast to acess
     data = np.ascontiguousarray(data,'float32')
@@ -48,6 +48,9 @@ def writeSEGY(out_filename, in_filename, out_cube):
     from shutil import copyfile
     copyfile(in_filename, out_filename)
 
+    # Moving temporal axis back again
+    out_cube = np.moveaxis(out_cube, 0,-1)
+
     #Open out-file
     with segyio.open(out_filename, "r+") as src:
         iline_start = src.ilines[0]
@@ -57,6 +60,10 @@ def writeSEGY(out_filename, in_filename, out_cube):
             iline = np.transpose( iline.squeeze(), [1,0])
             src.iline[i] = iline
 
+    # Moving temporal axis first again - just in case the user want to keep working on it
+    out_cube = np.moveaxis(out_cube, -1, 0)
+
+    print('Writing interpretation - Finished')
     return
 
 #Alternative writings for slice-type

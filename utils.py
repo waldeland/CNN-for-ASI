@@ -103,6 +103,7 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
 
     #Resize to input size
     if return_full_size:
+        print('Interpolating down sampled results to fit input cube')
 
         N = X0_grid.size
 
@@ -126,6 +127,7 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
             if is_int:
                 class_cube[i] = class_cube[i].astype('int32')
 
+        print('Finished interpolating')
 
     #Squeeze outputs
     for i in range(len(class_cube)):
