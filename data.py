@@ -57,7 +57,6 @@ def writeSEGY(out_filename, in_filename, out_cube):
         # loop through inlines and insert output
         for i in src.ilines:
             iline = out_cube[i-iline_start,:,:]
-            iline = np.transpose( iline.squeeze(), [1,0])
             src.iline[i] = iline
 
     # Moving temporal axis first again - just in case the user want to keep working on it
