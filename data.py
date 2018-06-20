@@ -39,9 +39,9 @@ def readSEGY(filename):
 
 # Writes out_cube to a segy-file (out_filename) with same header/size as in_filename
 def writeSEGY(out_filename, in_filename, out_cube):
-    #Select first channel
+    #Select last channel
     if type(out_cube) is list:
-        out_cube = out_cube[0]
+        out_cube = out_cube[-1]
 
     print('Writing interpretation to ' + out_filename)
     #Copy segy file
@@ -54,10 +54,11 @@ def writeSEGY(out_filename, in_filename, out_cube):
     #Open out-file
     with segyio.open(out_filename, "r+") as src:
         iline_start = src.ilines[0]
+        dtype = src.iline[iline_start].dtype
         # loop through inlines and insert output
         for i in src.ilines:
             iline = out_cube[i-iline_start,:,:]
-            src.iline[i] = iline
+            src.iline[i] = np.ascontiguousarray(iline.astype(dtype))
 
     # Moving temporal axis first again - just in case the user want to keep working on it
     out_cube = np.moveaxis(out_cube, -1, 0)
