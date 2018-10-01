@@ -58,8 +58,9 @@ def get_random_batch(data_cube, label_coordinates, im_size, batch_size,
         # We seek to have a balanced batch with equally many samples from each class.
         n_for_class += 1
         if n_for_class+1 > int(.5+batch_size / float(n_classes) ):
-            class_ind += 1
-            n_for_class = 0
+            if class_ind < n_classes-1:
+                class_ind += 1
+                n_for_class = 0
 
 
 
