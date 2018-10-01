@@ -179,7 +179,7 @@ def rand_bool():
 #Test the batch-functions
 if __name__ == '__main__':
     from data import readSEGY, readLabels, get_slice
-    import tensorboard
+    import tb_logger
     import numpy as np
 
     data, data_info = readSEGY(join('F3','data.segy'))
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     train_coordinates = {'1':np.expand_dims( np.array([50,50,50]), 1)}
 
 
-    logger = tensorboard.TBLogger('log','batch test')
+    logger = tb_logger.TBLogger('log', 'batch test')
 
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32)
     logger.log_images('normal',batch)

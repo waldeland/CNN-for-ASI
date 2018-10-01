@@ -9,7 +9,7 @@ import numpy as np
 from torch.autograd import Variable
 from utils import printProgressBar
 from scipy.interpolate import interpn
-import tensorboard
+import tb_logger
 from utils import interpret
 from data import writeSEGY
 
@@ -38,7 +38,7 @@ resolution = 16
 slice = 'inline' #Inline, crossline, timeslice or full
 slice_no = 339
 #Log to tensorboard
-logger = tensorboard.TBLogger('log','Test')
+logger = tb_logger.TBLogger('log', 'Test')
 logger.log_images(slice+'_' + str(slice_no), get_slice(data, data_info, slice, slice_no),cm='gray')
 
 """ Plot extracted features, class probabilities and salt-predictions for slice """

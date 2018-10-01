@@ -38,7 +38,7 @@ In addition, it may be useful to have a look on these files<br/>
 - texture_net.py - this is where the network is defined <br/>
 - batch.py - provide functionality to generate training batches with random augmentation <br/>
 - data.py - load/save data sets with segy-format and labeled slices as images <br/>
-- tensorboard.py - connects to the tensorboard functionality <br/>
+- tb_logger.py - connects to the tensorboard functionality <br/>
 - utils.py - some help functions <br/>
 
 ### Using a different data set and custom training labels
