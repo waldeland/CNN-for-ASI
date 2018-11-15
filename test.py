@@ -24,9 +24,11 @@ log_tensorboard = True
 data, data_info = readSEGY(join(dataset_name, 'data.segy'))
 
 #Load trained model (run train.py to create trained
-network = TextureNet()
+network = TextureNet(use_gpu=use_gpu)
 network.load_state_dict(torch.load(join('F3', 'saved_model.pt')))
-if use_gpu: network = network.cuda()
+if use_gpu: 
+  print( 'trying to use cuda!')
+  network = network.cuda()
 network.eval()
 
 # We can set the interpretation resolution to save time.
@@ -43,24 +45,24 @@ logger.log_images(slice+'_' + str(slice_no), get_slice(data, data_info, slice, s
 
 """ Plot extracted features, class probabilities and salt-predictions for slice """
 #features (attributes) from layer 5
-im  = interpret( network.f5, data, data_info, slice, slice_no, im_size, resolution)
+im  = interpret( network.f5, data, data_info, slice, slice_no, im_size, resolution, use_gpu=use_gpu)
 logger.log_images(slice+'_' + str(slice_no)+' _f5', im)
 
 #features from layer 4
-im  = interpret( network.f4, data, data_info, slice, slice_no, im_size, resolution)
+im  = interpret( network.f4, data, data_info, slice, slice_no, im_size, resolution, use_gpu=use_gpu)
 logger.log_images(slice+'_' + str(slice_no) +' _f4', im)
 
 #Class "probabilities"
-im  = interpret( network, data, data_info, slice, slice_no, im_size, resolution)
+im  = interpret( network, data, data_info, slice, slice_no, im_size, resolution, use_gpu=use_gpu)
 logger.log_images(slice+'_' + str(slice_no) + '_class_prob', im)
 
 #Class
-im  = interpret( network.classify, data, data_info, slice, slice_no, im_size, resolution)
+im  = interpret( network.classify, data, data_info, slice, slice_no, im_size, resolution, use_gpu=use_gpu)
 logger.log_images(slice+'_' + str(slice_no) + '_class', im)
 
 
 """ Make interpretation for full cube and save to SEGY file """
-classified_cube  = interpret( network.classify, data, data_info, 'full', None, im_size, 32)
+classified_cube  = interpret( network.classify, data, data_info, 'full', None, im_size, 32, use_gpu=use_gpu)
 in_file = join(dataset_name, 'data.segy')
 out_file = join(dataset_name, 'salt.segy')
 writeSEGY(out_file, in_file, classified_cube)

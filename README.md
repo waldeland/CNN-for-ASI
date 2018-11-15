@@ -23,7 +23,7 @@ CNNs requires time-demanding computations, consider using a computer with a fast
 ### How to use tensorboard (for visualization)
 - Open a terminal<br />
 - cd to the code-folder<br />
-- run: tensorboard --outdir='log'<br />
+- run: tensorboard --logdir='log'<br />
 - Open a web-browser and go to localhost:6006<br />
 More information can be found [here](https://www.tensorflow.org/get_started/summaries_and_tensorboard#launching_tensorboard).
   
