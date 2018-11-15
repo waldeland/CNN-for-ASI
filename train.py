@@ -9,7 +9,7 @@ from data import readSEGY, readLabels, get_slice
 from batch import get_random_batch
 from torch.autograd import Variable
 from torch.utils.data import DataLoader, Dataset
-import tensorboard
+import tb_logger
 
 
 
@@ -24,7 +24,7 @@ im_size = 65
 batch_size = 32 #If you have a GPU with little memory, try reducing this to 16 (may degrade results)
 use_gpu = True #Switch to toggle the use of GPU or not
 log_tensorboard = True #Log progress on tensor board
-if log_tensorboard: logger = tensorboard.TBLogger('log','Train')
+if log_tensorboard: logger = tb_logger.TBLogger('log', 'Train')
 
 #See the texture_net.py file for the network configuration
 from texture_net import TextureNet
@@ -88,7 +88,7 @@ for i in range(2000):
     # Ask the optimizer to adjust the parameters in the direction of lower loss
     optimizer.step()
 
-    # Every 10th iteration - test acuracy on training and validation set
+    # Every 10th iteration - print training loss
     if i % 10 == 0:
         network.eval()
 
@@ -100,7 +100,7 @@ for i in range(2000):
     if i % 100 == 0 and log_tensorboard:
         network.eval()
 
-        # Output predicted train/validation class/probabillity images
+        # Output predicted train/validation class/probability images
         for class_img in train_class_imgs + val_class_imgs:
 
             slice = class_img[1]

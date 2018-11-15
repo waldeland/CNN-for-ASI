@@ -58,8 +58,9 @@ def get_random_batch(data_cube, label_coordinates, im_size, batch_size,
         # We seek to have a balanced batch with equally many samples from each class.
         n_for_class += 1
         if n_for_class+1 > int(.5+batch_size / float(n_classes) ):
-            class_ind += 1
-            n_for_class = 0
+            if class_ind < n_classes-1:
+                class_ind += 1
+                n_for_class = 0
 
 
 
@@ -178,7 +179,7 @@ def rand_bool():
 #Test the batch-functions
 if __name__ == '__main__':
     from data import readSEGY, readLabels, get_slice
-    import tensorboard
+    import tb_logger
     import numpy as np
 
     data, data_info = readSEGY(join('F3','data.segy'))
@@ -186,7 +187,7 @@ if __name__ == '__main__':
     train_coordinates = {'1':np.expand_dims( np.array([50,50,50]), 1)}
 
 
-    logger = tensorboard.TBLogger('log','batch test')
+    logger = tb_logger.TBLogger('log', 'batch test')
 
     [batch, labels] = get_random_batch(data, train_coordinates, 65, 32)
     logger.log_images('normal',batch)

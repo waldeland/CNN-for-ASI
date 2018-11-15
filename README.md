@@ -4,6 +4,8 @@ Code for the paper:<br />
 A. U. Waldeland, A. C. Jensen, L. Gelius and A. H. S. Solberg <br />
 [*The Leading Edge, July 2018*](https://library.seg.org/doi/abs/10.1190/tle37070529.1)
 
+EAGE E-lecture: [*Seismic interpretation with deep learning*](https://www.youtube.com/watch?v=lm85Ap4OstM) (YouTube)
+
 This repository contains python/pytorch code for applying Convolutional Neural Networks (CNN) on seismic data. The input is a segy-file containing post-stack seismic amplitude data. The training labels are given as images of the training slices, colored to indicate the classes. 
 
 ### Setup to get started
@@ -36,7 +38,7 @@ In addition, it may be useful to have a look on these files<br/>
 - texture_net.py - this is where the network is defined <br/>
 - batch.py - provide functionality to generate training batches with random augmentation <br/>
 - data.py - load/save data sets with segy-format and labeled slices as images <br/>
-- tensorboard.py - connects to the tensorboard functionality <br/>
+- tb_logger.py - connects to the tensorboard functionality <br/>
 - utils.py - some help functions <br/>
 
 ### Using a different data set and custom training labels

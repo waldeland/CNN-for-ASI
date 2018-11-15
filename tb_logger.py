@@ -125,7 +125,7 @@ class TBLogger(object):
         return new_images_ts, new_images_il, new_images_cl
     #Convert torch to numpy
     def convert_to_numpy(self,im):
-        if type(im) == torch.autograd.variable.Variable:
+        if type(im) == torch.autograd.Variable:
             #Put on CPU
             im = im.cpu()
             #Get np-data
