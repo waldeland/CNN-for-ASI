@@ -28,7 +28,7 @@ if log_tensorboard: logger = tb_logger.TBLogger('log', 'Train')
 
 #See the texture_net.py file for the network configuration
 from texture_net import TextureNet
-network = TextureNet()
+network = TextureNet(n_classes=2)
 
 #Loss function
 cross_entropy = nn.CrossEntropyLoss() #Softmax function is included
@@ -92,9 +92,14 @@ for i in range(2000):
     if i % 10 == 0:
         network.eval()
 
-        #Log to training loss
-        if log_tensorboard: logger.log_scalar('training_loss',  loss.cpu().data.numpy(),i)
-        print('Iteration:', i, 'Training loss:', loss.cpu().data.numpy())
+        #Log to training loss/acc
+        print('Iteration:', i, 'Training loss:', var_to_np(loss))
+        if log_tensorboard:
+            logger.log_scalar('training_loss',  var_to_np(loss),i)
+        for k,v in computeAccuracy(torch.argmax(output,1), labels).items():
+            if log_tensorboard:
+                logger.log_scalar('training_' + k, v, i)
+            print(' -',k,v,'%')
 
     #every 100th iteration
     if i % 100 == 0 and log_tensorboard:

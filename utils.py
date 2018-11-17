@@ -200,3 +200,45 @@ def gpu_no_of_var(var):
             return var.get_device()
     else:
         return False
+
+
+#Take a pytorch variable and make numpy
+def var_to_np(var):
+    if type(var) in [np.array, np.ndarray]:
+        return var
+
+    #If input is list we do this for all elements
+    if type(var) == type([]):
+        out = []
+        for v in var:
+            out.append(var_to_np(v))
+        return out
+
+    try:
+        var = var.cpu()
+    except:
+        None
+    try:
+        var = var.data
+    except:
+        None
+    try:
+        var = var.numpy()
+    except:
+        None
+
+    if type(var) == tuple:
+        var = var[0]
+    return var
+
+
+def computeAccuracy(predicted_class, labels):
+    labels = var_to_np(labels)
+    predicted_class = var_to_np(predicted_class)
+
+    accuracies = {}
+    for cls in np.unique(labels):
+        if cls>=0:
+            accuracies['accuracy_class_' + str(cls)] = int(np.mean(predicted_class[labels==cls]==cls)*100)
+    accuracies['average_class_accuracy'] = np.mean([acc for acc in accuracies.values()])
+    return accuracies
