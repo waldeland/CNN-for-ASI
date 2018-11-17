@@ -5,7 +5,7 @@ from utils import gpu_no_of_var
 
 
 class TextureNet(nn.Module):
-    def __init__(self):
+    def __init__(self,n_classes=2):
         super(TextureNet,self).__init__()
 
         # Network definition
@@ -31,7 +31,7 @@ class TextureNet(nn.Module):
             nn.BatchNorm3d(50),
             nn.ReLU(),
 
-            nn.Conv3d(50,2,1,1), #This is the equivalent of a fully connected layer since input has width/height/depth = 1
+            nn.Conv3d(50,n_classes,1,1), #This is the equivalent of a fully connected layer since input has width/height/depth = 1
             nn.ReLU(),
 
         )
