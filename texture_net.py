@@ -1,10 +1,11 @@
 import torch
 from torch import nn
 
+from utils import gpu_no_of_var
+
 
 class TextureNet(nn.Module):
-    def __init__(self, use_gpu=True):
-        self.use_gpu=use_gpu
+    def __init__(self):
         super(TextureNet,self).__init__()
 
         # Network definition
@@ -69,7 +70,8 @@ class TextureNet(nn.Module):
         layers = list(self.net.children())[0:layer_indexes[layer_no]+1]
         for i in range(len(layers)):
             tmp_net.add_module(str(i),layers[i])
-        if self.use_gpu: tmp_net.cuda()
+        if type(gpu_no_of_var(self)) == int:
+            tmp_net.cuda(gpu_no_of_var(self))
         return tmp_net(x)
 
 

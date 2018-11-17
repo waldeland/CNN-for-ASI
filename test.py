@@ -24,10 +24,9 @@ log_tensorboard = True
 data, data_info = readSEGY(join(dataset_name, 'data.segy'))
 
 #Load trained model (run train.py to create trained
-network = TextureNet(use_gpu=use_gpu)
+network = TextureNet()
 network.load_state_dict(torch.load(join('F3', 'saved_model.pt')))
 if use_gpu: 
-  print( 'trying to use cuda!')
   network = network.cuda()
 network.eval()
 

@@ -184,3 +184,19 @@ def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, l
     if iteration == total:
         print
     last_update = time.time()
+
+
+#Function that returns the GPU number of a variable/module (or False if on CPU)
+def gpu_no_of_var(var):
+    try:
+        is_cuda = next(var.parameters()).is_cuda
+    except:
+        is_cuda = var.is_cuda
+
+    if is_cuda:
+        try:
+            return next(var.parameters()).get_device()
+        except:
+            return var.get_device()
+    else:
+        return False

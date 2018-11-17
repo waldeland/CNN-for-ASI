@@ -93,8 +93,8 @@ for i in range(2000):
         network.eval()
 
         #Log to training loss
-        if log_tensorboard: logger.log_scalar('training_loss',  loss.cpu().data[0],i)
-        print('Iteration:', i, 'Training loss:', loss.cpu().data[0])
+        if log_tensorboard: logger.log_scalar('training_loss',  loss.cpu().data.numpy(),i)
+        print('Iteration:', i, 'Training loss:', loss.cpu().data.numpy())
 
     #every 100th iteration
     if i % 100 == 0 and log_tensorboard:
