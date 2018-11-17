@@ -154,7 +154,7 @@ def parseLabelsInImage(img):
         b = b * a
 
 
-    tolerance = 10
+    tolerance = 1
     #Go through classes and find pixels with this class
     cls = 0
     for color in class_color_coding:
