@@ -3,7 +3,8 @@ from torch import nn
 
 
 class TextureNet(nn.Module):
-    def __init__(self):
+    def __init__(self, use_gpu=True):
+        self.use_gpu=use_gpu
         super(TextureNet,self).__init__()
 
         # Network definition
@@ -68,7 +69,7 @@ class TextureNet(nn.Module):
         layers = list(self.net.children())[0:layer_indexes[layer_no]+1]
         for i in range(len(layers)):
             tmp_net.add_module(str(i),layers[i])
-        tmp_net.cuda()
+        if self.use_gpu: tmp_net.cuda()
         return tmp_net(x)
 
 

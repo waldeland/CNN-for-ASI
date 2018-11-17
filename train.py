@@ -106,11 +106,15 @@ for i in range(2000):
             slice = class_img[1]
             slice_no = class_img[2]
 
-            class_img = interpret(network.classify, data, data_info, slice, slice_no, im_size, 16, return_full_size=True)
+            class_img = interpret(network.classify, data, data_info, slice, slice_no, im_size, 16, return_full_size=True, use_gpu=use_gpu)
             logger.log_images( slice + '_' + str(slice_no)+ '_pred_class', class_img, i)
 
-            class_img = interpret(network, data, data_info, slice, slice_no, im_size, 16, return_full_size=True)
+            class_img = interpret(network, data, data_info, slice, slice_no, im_size, 16, return_full_size=True, use_gpu=use_gpu)
             logger.log_images( slice + '_' + str(slice_no) + '_pred_prob', class_img, i)
 
         #Store trained network
         torch.save(network.state_dict(), join(dataset_name, 'saved_model.pt'))
+
+
+
+
