@@ -49,9 +49,6 @@ else:
 
 network.eval()
 
-# We can set the interpretation RESOLUTION to save time.f
-# The interpretation is then conducted over every n-th sample and
-# then resized to the full size of the input data
 print ("RESOLUTION {}".format(RESOLUTION))
 
 ##########################################################################
@@ -60,11 +57,7 @@ print ("RESOLUTION {}".format(RESOLUTION))
 logger = tb_logger.TBLogger('log', 'Test')
 logger.log_images(SLICE+'_' + str(SLICE_NUM), get_slice(data, data_info, SLICE, SLICE_NUM),cm='gray')
 
-# classified_cube = interpret(network.classify, data, data_info, 'full', None, IM_SIZE, RESOLUTION, use_gpu=use_gpu)
-# model = nn.DataParallel(network.classify)
-
 # Get half window size
-
 window = IM_SIZE//2
 nx, ny, nz = data.shape
 
@@ -92,8 +85,6 @@ class MyDataset(Dataset):
     pixel = self.coord_list[index]
     x, y, z = pixel
     small_cube = self.data[x-self.window:x+self.window+1, y-self.window:y+self.window+1, z-self.window:z+self.window+1]
-    #return Variable(torch.FloatTensor(small_cube[np.newaxis, :, :, :]))
-    # return torch.Tensor(voxel).float()
     return torch.FloatTensor(small_cube[np.newaxis, :, :, :])
 
   def __len__(self):
@@ -104,7 +95,6 @@ classified_cube = np.zeros(data.shape)
 model = network
 if torch.cuda.device_count() > 1:
   print("Let's use", torch.cuda.device_count(), "GPUs!")
-  # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
   model = nn.DataParallel(network)
 
 model.to(device)
