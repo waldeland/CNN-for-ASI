@@ -116,9 +116,9 @@ class MyDataset(Dataset):
         pixel = self.coord_list[index]
         x, y, z = pixel
         small_cube = self.data[
-            x - self.window : x + self.window,
-            y - self.window : y + self.window,
-            z - self.window : z + self.window,
+            x - self.window : x + self.window + 1,
+            y - self.window : y + self.window + 1,
+            z - self.window : z + self.window + 1,
         ]
 
         return small_cube[np.newaxis, :, :, :], index
