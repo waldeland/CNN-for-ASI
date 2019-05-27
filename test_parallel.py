@@ -93,9 +93,9 @@ nx, ny, nz = data.shape
 
 # generate full list of coordinates
 # memory footprint of this isn't large yet, so not need to wrap as a generator
-x_list = range(window, nx - window + 1)
-y_list = range(window, ny - window + 1)
-z_list = range(window, nz - window + 1)
+x_list = range(window, nx - window)
+y_list = range(window, ny - window)
+z_list = range(window, nz - window)
 
 print("-- generating coord list --")
 # TODO: is there any way to use a generator with pyTorch data loader?
