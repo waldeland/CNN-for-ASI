@@ -73,10 +73,10 @@ def interpret( network, data, data_info, slice, slice_no, im_size, subsampl, ret
 
 
         #Only compute when a full 65x65x65 cube can be extracted around center pixel
-        if X0>w and X1>w and X2>w and X0<N0-w and X1<N1-w and X2<N2-w:
+        if X0>w and X1>w and X2>w and X0<N0-w+1 and X1<N1-w+1 and X2<N2-w+1:
 
             #Get mini-cube around center pixel
-            mini_cube = data[X0-w:X0+w, X1-w:X1+w, X2-w:X2+w]
+            mini_cube = data[X0-w:X0+w+ 1, X1-w:X1+w+ 1, X2-w:X2+w+ 1]
 
             #Get predicted "probabilities"
             mini_cube = Variable( torch.FloatTensor(mini_cube[np.newaxis,np.newaxis,:,:,:]) )

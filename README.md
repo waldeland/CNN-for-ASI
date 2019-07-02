@@ -40,6 +40,7 @@ In addition, it may be useful to have a look on these files<br/>
 - data.py - load/save data sets with segy-format and labeled slices as images <br/>
 - tb_logger.py - connects to the tensorboard functionality <br/>
 - utils.py - some help functions <br/>
+- test_parallel.py - An implemenation of test.py supporting multi-gpu prediction (thanks to Max Kaznady).<br />
 
 ### Using a different data set and custom training labels
 If you want to use a different data set, do the following:
