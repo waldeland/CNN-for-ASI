@@ -10,14 +10,7 @@ This repository contains python/pytorch code for applying Convolutional Neural N
 
 ### Setup to get started
 CNNs requires time-demanding computations, consider using a computer with a fast NVIDIA GPU with at least 6GB ram.
-- Make sure you have all the required python packages installed: <br/> 
--- pytorch <br/> 
--- tensorflow (GPU enabled version is not needed - we only use this package for plotting) <br />
--- tensorflow-tensorboard <br />
--- numpy<br />
--- scipy<br />
--- segyio<br />
--- matplotlib<br />
+- Install the required python packages (REQUIREMENTS.txt)
 - Clone this repository<br />
 - Download the demo data set [here](https://drive.google.com/drive/folders/0B7brcf-eGK8CbGhBdmZoUnhiTWs). This is the F3 Netherlands dataset - originally made available by OpenDTect - and available via the [MalenoV Project](https://github.com/bolgebrygg/MalenoV).
 - Locate the '.segy'-file, rename it to 'data.segy' and put it in the 'F3'-folder.
