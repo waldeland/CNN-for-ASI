@@ -1,0 +1,6 @@
+pytorch 
+tensorflow
+numpy
+scipy
+segyio
+matplotlib
