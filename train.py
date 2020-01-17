@@ -95,7 +95,7 @@ for i in range(2000):
         #Log to training loss/acc
         print('Iteration:', i, 'Training loss:', var_to_np(loss))
         if log_tensorboard:
-            logger.log_scalar('training_loss',  var_to_np(loss),i)
+            logger.log_scalar('training_loss',  var_to_np(loss).tolist(),i)
         for k,v in computeAccuracy(torch.argmax(output,1), labels).items():
             if log_tensorboard:
                 logger.log_scalar('training_' + k, v, i)
