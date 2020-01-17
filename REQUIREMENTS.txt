@@ -1,6 +1,6 @@
-pytorch 
-tensorflow
+pytorch==10.1
+tensorflow==1.14
 numpy
-scipy
+scipy=1.1.0
 segyio
 matplotlib
