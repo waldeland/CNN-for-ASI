@@ -1,4 +1,6 @@
 # CNN for ASI
+The purpose of this repo is to maintain, and to update the libraries to the newest standards, so that it might be used with the newest version of the libraries, and Python.
+
 Code for the paper:<br />
 **Convolutional Neural Networks for Automated Seismic Interpretation**,<br />
 A. U. Waldeland, A. C. Jensen, L. Gelius and A. H. S. Solberg <br />
