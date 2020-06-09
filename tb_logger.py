@@ -19,7 +19,7 @@ class TBLogger(object):
 
         self.log_dir = join(log_dir, folder_name + ' ' + datetime.datetime.now().strftime("%I%M%p, %B %d, %Y"))
         self.log_dir  = self.log_dir.replace('//','/')
-        self.writer = tf.summary.FileWriter(self.log_dir)
+        self.writer = tf.summary.create_file_writer(self.log_dir)
 
     #Add scalar
     def log_scalar(self, tag, value, step=0):
@@ -84,19 +84,19 @@ class TBLogger(object):
             plt.imsave(s, img, format='png')
 
             # Create an Image object
-            img_sum = tf.Summary.Image(encoded_image_string=s.getvalue(),
+            img_sum = tf.compat.v1.Summary.Image(encoded_image_string=s.getvalue(),
                                        height=img.shape[0],
                                        width=img.shape[1])
             # Create a Summary value
-            im_summaries.append(tf.Summary.Value(tag='%s/%d' % (tag, nr),
+            im_summaries.append(tf.compat.v1.Summary.Value(tag='%s/%d' % (tag, nr),
                                                  image=img_sum))
 
             #if nr == max_imgs-1:
             #    break
 
         # Create and write Summary
-        summary = tf.Summary(value=im_summaries)
-        self.writer.add_summary(summary, step)
+        summary = tf.compat.v1.Summary(value=im_summaries)
+        ##self.writer.add_summary(summary, step)
 
     # Cuts out middle slices from image
     def get_slices_from_3D(self, img):
