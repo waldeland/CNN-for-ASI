@@ -23,7 +23,7 @@ from utils import *
 dataset_name = 'F3'
 im_size = 65
 batch_size = 32 #If you have a GPU with little memory, try reducing this to 16 (may degrade results)
-use_gpu = True #Switch to toggle the use of GPU or not
+use_gpu = False #Switch to toggle the use of GPU or not
 log_tensorboard = True #Log progress on tensor board
 if log_tensorboard: logger = tb_logger.TBLogger('log', 'Train')
 

@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import datetime
+from tensorflow.python.framework.ops import disable_eager_execution
+disable_eager_execution()
 
 class TBLogger(object):
 
