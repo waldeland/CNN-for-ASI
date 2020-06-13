@@ -6,14 +6,12 @@ import segyio
 from os import listdir
 import numpy as np
 import scipy.misc
-<<<<<<< HEAD
 from imageio import imread
 import PIL 
 
-=======
+
 from skimage.io import imread 
 from skimage.transform import resize
->>>>>>> master
 def readSEGY(filename):
     print('Loading data cube from',filename,'with:')
 
@@ -107,12 +105,9 @@ def readLabels(foldername, data_info):
 
                 #Read file
                 print('Loading labels for', slice_type, slice_no, 'with')
-<<<<<<< HEAD
-                #img =  scipy.misc.imread(join(foldername, file))
+
                 img = imread(join(foldername, file))
-=======
-                img =  imread(join(foldername, file))
->>>>>>> master
+
                 img = interpolate_to_fit_data(img, slice_type, slice_no, data_info)
                 label_img = parseLabelsInImage(img)
 
@@ -190,13 +185,12 @@ def interpolate_to_fit_data(img, slice_type, slice_no, data_info):
     elif slice_type == 'timeslice':
         n0 = data_info['shape'][1]
         n1 = data_info['shape'][2]
-<<<<<<< HEAD
+
     return np.array(PIL.Image.fromarray(img).resize((n0,n1)))
     #return scipy.misc.imresize(img, (n0,n1), interp='nearest')
-=======
 
     return resize(img, (n0,n1))
->>>>>>> master
+
 
 # Get coordinates for slice in the full cube
 def get_coordinates_for_slice( slice_type, slice_no, data_info):

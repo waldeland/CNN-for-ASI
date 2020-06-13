@@ -21,12 +21,10 @@ class TBLogger(object):
 
         self.log_dir = join(log_dir, folder_name + ' ' + datetime.datetime.now().strftime("%I%M%p, %B %d, %Y"))
         self.log_dir  = self.log_dir.replace('//','/')
-<<<<<<< HEAD
-        self.writer = tf.compat.v1.summary.FileWriter(self.log_dir)
-=======
-        self.writer = tf.summary.create_file_writer(self.log_dir)
->>>>>>> master
 
+        self.writer = tf.compat.v1.summary.FileWriter(self.log_dir)
+
+        
     #Add scalar
     def log_scalar(self, tag, value, step=0):
         summary = tf.compat.v1.Summary(value=[tf.compat.v1.Summary.Value(tag=tag,
@@ -102,12 +100,7 @@ class TBLogger(object):
 
         # Create and write Summary
         summary = tf.compat.v1.Summary(value=im_summaries)
-<<<<<<< HEAD
         self.writer.add_summary(summary, step)
-=======
-        ##self.writer.add_summary(summary, step)
->>>>>>> master
-
     # Cuts out middle slices from image
     def get_slices_from_3D(self, img):
 
