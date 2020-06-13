@@ -17,7 +17,7 @@ CNNs requires time-demanding computations, consider using a computer with a fast
 <<<<<<< HEAD
 - Set up the environment:
 	- If you use Vanilla Python3, use the command: pip3 install -r requirements.txt
-	- If you use a Scientific conta distribution, use the command: conda create --name <env_name> --file requirements.txt
+	- If you use a Scientific conta distribution, use the command:  conda create --name <env> --file Anaconda_Requirements.txt
 =======
 - Install the required python packages by using the command pip install requirments.txt
 If you have Anaconda, do the following:
