@@ -17,7 +17,7 @@ from data import writeSEGY
 dataset_name = 'F3'
 subsampl = 16 #We only evaluate every n-th point
 im_size = 65
-use_gpu = True #Switch to toggle the use of GPU or not
+use_gpu = False #Switch to toggle the use of GPU or not
 log_tensorboard = True
 
 #Read 3D cube
