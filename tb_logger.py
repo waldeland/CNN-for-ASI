@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import datetime
+from tensorflow.python.framework.ops import disable_eager_execution
+disable_eager_execution()
 
 class TBLogger(object):
 
@@ -19,11 +21,15 @@ class TBLogger(object):
 
         self.log_dir = join(log_dir, folder_name + ' ' + datetime.datetime.now().strftime("%I%M%p, %B %d, %Y"))
         self.log_dir  = self.log_dir.replace('//','/')
+<<<<<<< HEAD
+        self.writer = tf.compat.v1.summary.FileWriter(self.log_dir)
+=======
         self.writer = tf.summary.create_file_writer(self.log_dir)
+>>>>>>> master
 
     #Add scalar
     def log_scalar(self, tag, value, step=0):
-        summary = tf.Summary(value=[tf.Summary.Value(tag=tag,
+        summary = tf.compat.v1.Summary(value=[tf.compat.v1.Summary.Value(tag=tag,
                                                      simple_value=value)])
         self.writer.add_summary(summary, step)
 
@@ -96,7 +102,11 @@ class TBLogger(object):
 
         # Create and write Summary
         summary = tf.compat.v1.Summary(value=im_summaries)
+<<<<<<< HEAD
+        self.writer.add_summary(summary, step)
+=======
         ##self.writer.add_summary(summary, step)
+>>>>>>> master
 
     # Cuts out middle slices from image
     def get_slices_from_3D(self, img):

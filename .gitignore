@@ -1,3 +1,9 @@
 data.segy
 log
+<<<<<<< HEAD
+report.txt
+*.segy
+*.pt
+.DS_Store
+.__pycache__
 
