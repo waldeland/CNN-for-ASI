@@ -1,2 +1,6 @@
 data.segy
 log
+report.txt
+*.segy
+*.pt
+
