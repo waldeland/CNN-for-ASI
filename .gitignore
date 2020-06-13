@@ -3,4 +3,4 @@ log
 report.txt
 *.segy
 *.pt
-
+.DS_Store
