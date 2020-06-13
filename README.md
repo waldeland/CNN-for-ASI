@@ -14,15 +14,13 @@ This repository contains python/pytorch code for applying Convolutional Neural N
 CNNs requires time-demanding computations, consider using a computer with a fast NVIDIA GPU with at least 6GB ram.
 
 - Clone this repository<br />
-<<<<<<< HEAD
 - Set up the environment:
 	- If you use Vanilla Python3, use the command: pip3 install -r requirements.txt
 	- If you use a Scientific conta distribution, use the command:  conda create --name <env> --file Anaconda_Requirements.txt
-=======
+
 - Install the required python packages by using the command pip install requirments.txt
 If you have Anaconda, do the following:
 - Create a conda virtual enviroment by using the following command, replacing <env> with a name for your virtual enviroment : conda create --name <env> --file spec-file.txt
->>>>>>> master
 - Download the demo data set [here](https://drive.google.com/drive/folders/0B7brcf-eGK8CbGhBdmZoUnhiTWs). This is the F3 Netherlands dataset - originally made available by OpenDTect - and available via the [MalenoV Project](https://github.com/bolgebrygg/MalenoV).
 - Locate the '.segy'-file, rename it to 'data.segy' and put it in the 'F3'-folder.
  
