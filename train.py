@@ -1,4 +1,5 @@
 # Compatability Imports
+
 from __future__ import print_function
 from os.path import join
 
@@ -22,7 +23,7 @@ from utils import *
 dataset_name = 'F3'
 im_size = 65
 batch_size = 32 #If you have a GPU with little memory, try reducing this to 16 (may degrade results)
-use_gpu = True #Switch to toggle the use of GPU or not
+use_gpu = False #Switch to toggle the use of GPU or not
 log_tensorboard = True #Log progress on tensor board
 if log_tensorboard: logger = tb_logger.TBLogger('log', 'Train')
 
@@ -95,7 +96,7 @@ for i in range(2000):
         #Log to training loss/acc
         print('Iteration:', i, 'Training loss:', var_to_np(loss))
         if log_tensorboard:
-            logger.log_scalar('training_loss',  var_to_np(loss),i)
+            logger.log_scalar('training_loss',  var_to_np(loss).tolist(),i)
         for k,v in computeAccuracy(torch.argmax(output,1), labels).items():
             if log_tensorboard:
                 logger.log_scalar('training_' + k, v, i)
